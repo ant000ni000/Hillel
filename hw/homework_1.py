@@ -9,7 +9,7 @@
 # Через if/elif/else.
 # Через match/case.
 #
-color = input("Enter your color").lower().replace(" ", "")
+color = input("Enter your color").lower().strip()
 
 if color == "red":
     print("STOP")
