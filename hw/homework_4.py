@@ -33,34 +33,56 @@
 # 1 x 0.01
 def hundred_times(list_1):
     return [int(el*100) for el in list_1]
-list_of_paper = hundred_times([500,200,100,50,20,10,5])
-list_of_coins = hundred_times([2,1,0.5,0.20,0.10,0.05,0.02,0.01])
-list_of_money = list_of_paper
-dict_of_money = {}
+# list_of_paper = hundred_times([500,200,100,50,20,10,5])
+# list_of_coins = hundred_times([2,1,0.5,0.20,0.10,0.05,0.02,0.01])
+# list_of_money = list_of_paper
+# dict_of_money = {}
+# dict_type_of_money = {"paper":0,"coins":0}
+# type_of_money = "paper"
+# step = 0
+
+# summ=input("Input your digit\n").replace(",",".")
+# summ= 321.20
+# if "." in summ and len(summ[summ.find("."): ])>3: #на випадок якщо число у якому більше анід 2 числа після коми
+#     summ = summ[:summ.find(".")+3]
+# summ = round(float(summ) * 100)#я множу число на 100 щоб працбваиим виключно з цілими числами
+# while summ>0:
+#     if list_of_money[step]<=summ:
+#         summ -=list_of_money[step]
+#         dict_of_money[list_of_money[step]/100] = dict_of_money.get(list_of_money[step]/100, 0) + 1
+#         dict_type_of_money[type_of_money] +=1
+#     elif list_of_money[step]>summ:
+#         step+=1
+#         # print(len(list_of_money))
+#         if len(list_of_money)-1<step:
+#             list_of_money=list_of_coins
+#             type_of_money = "coins"
+#             step=0
+# print("Склад сумми:")
+# for key, value in dict_of_money.items():
+#     print(f"{value} x {key}")
+
+
+# summ=input("Input your digit\n").replace(",",".")
+summ=321.21
+summ = round(float(summ) * 100)
+list_currency = hundred_times([500,200,100,50,20,10,5,2,1,0.5,0.20,0.10,0.05,0.02,0.01])
 dict_type_of_money = {"paper":0,"coins":0}
 type_of_money = "paper"
-step = 0
-
-summ=input("Input your digit\n").replace(",",".")
-if "." in summ and len(summ[summ.find("."): ])>3: #на випадок якщо число у якому більше анід 2 числа після коми
-    summ = summ[:summ.find(".")+3]
-summ = round(float(summ) * 100)#я множу число на 100 щоб працбваиим виключно з цілими числами
-while summ>0:
-    if list_of_money[step]<=summ:
-        summ -=list_of_money[step]
-        dict_of_money[list_of_money[step]/100] = dict_of_money.get(list_of_money[step]/100, 0) + 1
-        dict_type_of_money[type_of_money] +=1
-    elif list_of_money[step]>summ:
-        step+=1
-        # print(len(list_of_money))
-        if len(list_of_money)-1<step:
-            list_of_money=list_of_coins
-            type_of_money = "coins"
-            step=0
-print("Склад сумми:")
-for key, value in dict_of_money.items():
-    print(f"{value} x {key}")
+dict_of_money = {}
+for el in list_currency:
+    current_quantity = summ // el
+    if current_quantity >0:
+        nominal = el // 100 if el >= 100 else el / 100
+        dict_of_money[nominal] = current_quantity
+        summ -= el * current_quantity
+        dict_type_of_money[type_of_money] += current_quantity
+    if el == list_currency[6]:
+        type_of_money = "coins"
 
 print(f"Кількість банкнот:{dict_type_of_money['paper']}")
 print(f"Кількість монет:{dict_type_of_money['coins']}")
 
+print("Склад сумми:")
+for key, value in dict_of_money.items():
+    print(f"{value} x {key}")
