@@ -63,9 +63,13 @@ def hundred_times(list_1):
 #     print(f"{value} x {key}")
 
 
-# summ=input("Input your digit\n").replace(",",".")
-summ=321.21
+summ=input("Input your digit\n").replace(",",".")
+if "." in summ and len(summ[summ.find("."): ])>3: #на випадок якщо число у якому більше анід 2 числа після коми
+    summ = summ[:summ.find(".")+3]
+print("Ваша сумма:", summ)
 summ = round(float(summ) * 100)
+
+
 list_currency = hundred_times([500,200,100,50,20,10,5,2,1,0.5,0.20,0.10,0.05,0.02,0.01])
 dict_type_of_money = {"paper":0,"coins":0}
 type_of_money = "paper"
